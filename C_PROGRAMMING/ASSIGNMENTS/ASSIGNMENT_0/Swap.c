@@ -1,5 +1,5 @@
 #include <stdio.h>
-# swap the program of two variable
+// swap the program of two variable
 void main(){
 	int a = 10;
 	int b = 23;
