@@ -2,24 +2,24 @@
 #include <string.h>
 
 typedef struct Book {
-    int Bid, price;
-    float Rating;
-    char Bname[20], Category[20], AuthorName[20];
+    int bid, price;
+    float rating;
+    char bname[20], category[20], authorName[20];
 } Book;
 
-void AddBookById(Book *, int *);
+void addBookById(Book *, int *);
 void displayBook(Book *, int);
-void SearchByBookName(Book *, int);
-void SearchById(Book *, int);
-void SearchByAuthorName(Book *, int);
-void SearchByRating(Book *, int);
-void SearchByCategory(Book *, int);
-void RemoveBook(Book *, int *);
-void updateBookById(Book *a1, int SIZE);
-void sortBooks(Book *a1, int SIZE);
+void searchByBookName(Book *, int);
+void searchById(Book *, int);
+void searchByAuthorName(Book *, int);
+void searchByrating(Book *, int);
+void searchByCategory(Book *, int);
+void removeBook(Book *, int *);
+void updateBookById(Book *a1, int );
+void sortBooks(Book *a1, int );
 
 void main() {
-    Book arr[30];
+    Book arr[3];
     int count = 0, n;
 
     do {
@@ -30,21 +30,21 @@ void main() {
 		scanf("%d", &n);
 
         switch (n) {
-            case 1: AddBookById(arr, &count); 
+            case 1: addBookById(arr, &count); 
 			break;
             case 2: displayBook(arr, count); 
 			break;
-            case 3: SearchByBookName(arr, count); 
+            case 3: searchByBookName(arr, count); 
 			break;
-            case 4: SearchById(arr, count); 
+            case 4: searchById(arr, count); 
 			break;
-            case 5: SearchByAuthorName(arr, count); 
+            case 5: searchByAuthorName(arr, count); 
 			break;
-            case 6: SearchByRating(arr, count); 
+            case 6: searchByRating(arr, count); 
 			break;
-            case 7: SearchByCategory(arr, count); 
+            case 7: searchByCategory(arr, count); 
 			break;
-            case 8: RemoveBook(arr, &count); 
+            case 8: removeBook(arr, &count); 
 			break;
             case 9: updateBookById(arr, count); 
 			break;
@@ -59,89 +59,95 @@ void main() {
 }
 
 // Add Book
-void AddBookById(Book *a1, int *SIZE) {
+void addBookById(Book *a1, int *size) {
     int num;
     printf("\nEnter the Book ID: ");
     scanf("%d", &num);
 
-    for (int i = 0; i < *SIZE; i++) {
-        if (num == a1[i].Bid) {
+    for (int i = 0; i < *size; i++) {
+        if (num == a1[i].bid) {
             printf("Book with this ID already exists!\n");
             return;
         }
     }
 
-    int pos = *SIZE;
-    a1[pos].Bid = num;
+    int pos = *size;
+    a1[pos].bid = num;
+    
 //	printf("Enter Book ID: ");
-//    scanf("%d", &a1[pos].Bid);
+//  scanf("%d", &a1[pos].Bid);
     getchar();
     
 	printf("Enter Book Name: ");
-    fgets(a1[pos].Bname, sizeof(a1[pos].Bname), stdin);
-    a1[pos].Bname[strcspn(a1[pos].Bname, "\n")] = '\0';
+    fgets(a1[pos].bname, sizeof(a1[pos].bname), stdin);
+    a1[pos].bname[strcspn(a1[pos].bname, "\n")] = '\0';
 
     printf("Enter Author Name: ");
-    fgets(a1[pos].AuthorName, sizeof(a1[pos].AuthorName), stdin);
-    a1[pos].AuthorName[strcspn(a1[pos].AuthorName, "\n")] = '\0';
+    fgets(a1[pos].authorName, sizeof(a1[pos].authorName), stdin);
+    a1[pos].authorName[strcspn(a1[pos].authorName, "\n")] = '\0';
 
     printf("Enter Price: ");
     scanf("%d", &a1[pos].price);
 	getchar();
 	
     printf("Enter Category: ");
-    fgets(a1[pos].Category, sizeof(a1[pos].Category), stdin);
-    a1[pos].Category[strcspn(a1[pos].Category, "\n")] = '\0';
+    fgets(a1[pos].category, sizeof(a1[pos].category), stdin);
+    a1[pos].category[strcspn(a1[pos].category, "\n")] = '\0';
 
     printf("Enter Rating : ");
-    scanf("%f", &a1[pos].Rating);
-    if(a1[pos].Rating <= 10)
+    scanf("%f", &a1[pos].rating);
+    if(a1[pos].rating <= 10)
 	{
-		printf("");
+
 	}
 	else 
 	{
     	printf("Invalid rating! Rating should be less than or equal to 10.\n");
+    	printf("Enter the Rating : ");
+    	scanf("%f", &a1[pos].rating);
 	}
-    (*SIZE)++;
+    (*size)++;
     printf("Book added successfully!\n");
+    
+
 }
 
 // Display Books
-void displayBook(Book *a1, int SIZE) {
-    if (SIZE == 0) {
+void displayBook(Book *a1, int size) {
+    if (size == 0) {
         printf("No books to display.\n");
         return;
     }
 
-    for (int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < size; i++) {
         printf("\n------ Book Details %d ------\n", i + 1);
-        printf("Book ID     : %d\n", a1[i].Bid);
-        printf("Book Name   : %s\n", a1[i].Bname);
-        printf("Author Name : %s\n", a1[i].AuthorName);
+        printf("Book ID     : %d\n", a1[i].bid);
+        printf("Book Name   : %s\n", a1[i].bname);
+        printf("Author Name : %s\n", a1[i].authorName);
         printf("Price       : %d\n", a1[i].price);
-        printf("Category    : %s\n", a1[i].Category);
-        printf("Rating      : %.2f\n", a1[i].Rating);
+        printf("Category    : %s\n", a1[i].category);
+        printf("Rating      : %.2f\n", a1[i].rating);
     }
 }
 
 // Search by Book Name
-void SearchByBookName(Book *a1, int SIZE) {
+void searchByBookName(Book *a1, int size) {
     char name[20];
     int found = 0;
     printf("\nEnter Book Name to search: ");
+    getchar();
     fgets(name, sizeof(name), stdin);
     name[strcspn(name, "\n")] = '\0';
 	
-	for (int i = 0; i < SIZE; i++) {
-        if (strcmp(a1[i].Bname, name) == 0) {
+	for (int i = 0; i < size; i++) {
+        if (strcmp(a1[i].bname, name) == 0) {
             printf("\nBook Found:\n");
-            printf("Book ID     : %d\n", a1[i].Bid);
-            printf("***Book Name : %s\n", a1[i].Bname);
-            printf("Author Name : %s\n", a1[i].AuthorName);
+            printf("Book ID     : %d\n", a1[i].bid);
+            printf("***Book Name : %s\n", a1[i].bname);
+            printf("Author Name : %s\n", a1[i].authorName);
             printf("Price       : %d\n", a1[i].price);
-            printf("Category    : %s\n", a1[i].Category);
-            printf("Rating      : %.2f\n", a1[i].Rating);
+            printf("Category    : %s\n", a1[i].category);
+            printf("Rating      : %.2f\n", a1[i].rating);
             found = 1;
         }
     }
@@ -150,19 +156,19 @@ void SearchByBookName(Book *a1, int SIZE) {
 }
 
 // Search by ID
-void SearchById(Book *a1, int SIZE) {
+void searchById(Book *a1, int size) {
     int id, found = 0;
     printf("Enter Book ID to search: ");
     scanf("%d", &id);
-    for (int i = 0; i < SIZE; i++) {
-        if (a1[i].Bid == id) {
+    for (int i = 0; i < size; i++) {
+        if (a1[i].bid == id) {
             printf("\nBook Found:\n");
-            printf("***Book ID  : %d\n", a1[i].Bid);
-            printf("Book Name   : %s\n", a1[i].Bname);
-            printf("Author Name : %s\n", a1[i].AuthorName);
+            printf("***Book ID  : %d\n", a1[i].bid);
+            printf("Book Name   : %s\n", a1[i].bname);
+            printf("Author Name : %s\n", a1[i].authorName);
             printf("Price       : %d\n", a1[i].price);
-            printf("Category    : %s\n", a1[i].Category);
-            printf("Rating      : %.2f\n", a1[i].Rating);
+            printf("Category    : %s\n", a1[i].category);
+            printf("Rating      : %.2f\n", a1[i].rating);
             found = 1;
         }
     }
@@ -171,22 +177,23 @@ void SearchById(Book *a1, int SIZE) {
 }
 
 // Search by Author Name
-void SearchByAuthorName(Book *a1, int SIZE) {
+void searchByAuthorName(Book *a1, int size) {
     char name[20];
     int found = 0;
     printf("\nEnter Author Name to search: ");
+    getchar();
 	fgets(name, sizeof(name), stdin);
     name[strcspn(name, "\n")] = '\0';  
 	  
-    for (int i = 0; i < SIZE; i++) {
-        if (strcmp(a1[i].AuthorName, name) == 0) {
+    for (int i = 0; i < size; i++) {
+        if (strcmp(a1[i].authorName, name) == 0) {
             printf("\nBook Found:\n");
-            printf("Book ID     : %d\n", a1[i].Bid);
-            printf("Book Name   : %s\n", a1[i].Bname);
-            printf("***Author Name : %s\n", a1[i].AuthorName);
+            printf("Book ID     : %d\n", a1[i].bid);
+            printf("Book Name   : %s\n", a1[i].bname);
+            printf("***Author Name : %s\n", a1[i].authorName);
             printf("Price       : %d\n", a1[i].price);
-            printf("Category    : %s\n", a1[i].Category);
-            printf("Rating      : %.2f\n", a1[i].Rating);
+            printf("Category    : %s\n", a1[i].category);
+            printf("Rating      : %.2f\n", a1[i].rating);
             found = 1;
         }
     }
@@ -195,22 +202,22 @@ void SearchByAuthorName(Book *a1, int SIZE) {
 }
 
 // Search by Rating
-void SearchByRating(Book *a1, int SIZE) {
+void searchByRating(Book *a1, int size) {
     float rating;
     int found = 0;
     printf("Enter Rating to search: ");
     scanf("%f", &rating);
     if(rating <= 10 && rating > 0 )
 	{
-			for (int i = 0; i < SIZE; i++) {
-       		 if (a1[i].Rating == rating) {
+			for (int i = 0; i < size; i++) {
+       		 if (a1[i].rating == rating) {
             printf("\nBook Found:\n");
-            printf("Book ID     : %d\n", a1[i].Bid);
-            printf("Book Name   : %s\n", a1[i].Bname);
-            printf("Author Name : %s\n", a1[i].AuthorName);
+            printf("Book ID     : %d\n", a1[i].bid);
+            printf("Book Name   : %s\n", a1[i].bname);
+            printf("Author Name : %s\n", a1[i].authorName);
             printf("Price       : %d\n", a1[i].price);
-            printf("Category    : %s\n", a1[i].Category);
-            printf("***Rating   : %.2f\n", a1[i].Rating);
+            printf("Category    : %s\n", a1[i].category);
+            printf("***Rating   : %.2f\n", a1[i].rating);
             found = 1;
         	}
     	}
@@ -225,41 +232,42 @@ void SearchByRating(Book *a1, int SIZE) {
 }
 
 // Search by Category
-void SearchByCategory(Book *a1, int SIZE) {
-    char category[20];
+void searchByCategory(Book *a1, int SIZE) {
+    char name[20];
     int found = 0;
     printf("\nEnter Category to search: ");
-    fgets(name, sizeof(name), stdin);
-    name[strcspn(name, "\n")] = '\0';
-    
+    getchar();
+	fgets(name, sizeof(name), stdin);
+	name[strcspn(name, "\n")] = '\0';
+	    
     for (int i = 0; i < SIZE; i++) {
-        if (strcmp(a1[i].Category, category) == 0) {
+        if (strcmp(a1[i].category, name) == 0) {
             printf("\nBook Found:\n");
-            printf("Book ID     : %d\n", a1[i].Bid);
-            printf("Book Name   : %s\n", a1[i].Bname);
-            printf("Author Name : %s\n", a1[i].AuthorName);
+            printf("Book ID     : %d\n", a1[i].bid);
+            printf("Book Name   : %s\n", a1[i].bname);
+            printf("Author Name : %s\n", a1[i].authorName);
             printf("Price       : %d\n", a1[i].price);
-            printf("***Category : %s\n", a1[i].Category);
-            printf("Rating      : %.2f\n", a1[i].Rating);
+            printf("***Category : %s\n", a1[i].category);
+            printf("Rating      : %.2f\n", a1[i].rating);
             found = 1;
         }
     }
     if (!found)
-        printf("No books found in Category '%s'\n", category);
+        printf("No books found in Category '%s'\n", name);
 }
 
 // Remove Book
-void RemoveBook(Book *a1, int *SIZE) {
+void removeBook(Book *a1, int *size) {
     int id, found = 0;
     printf("Enter Book ID to delete: ");
     scanf("%d", &id);
 
-    for (int i = 0; i < *SIZE; i++) {
-        if (a1[i].Bid == id) {
-            for (int j = i; j < *SIZE - 1; j++) {
+    for (int i = 0; i < *size; i++) {
+        if (a1[i].bid == id) {
+            for (int j = i; j < *size - 1; j++) {
                 a1[j] = a1[j + 1];
             }
-            (*SIZE)--;
+            (*size)--;
             printf("Book deleted successfully!\n");
             found = 1;
             break;
@@ -270,13 +278,13 @@ void RemoveBook(Book *a1, int *SIZE) {
 }
 
 //update Book
-void updateBookById(Book *a1, int SIZE) {
+void updateBookById(Book *a1, int size) {
     int id,n, found = 0;
     printf("Enter Book ID to update: ");
     scanf("%d", &id);
 
-    for (int i = 0; i < SIZE; i++) {
-        if (a1[i].Bid == id) {
+    for (int i = 0; i < size; i++) {
+        if (a1[i].bid == id) {
             found = 1;
             printf("\nEnter which term you update:\n");
         	printf("1: Book Name\n2: Author Name\n3: New Price\n4: New Category\n5: New Rating\n");
@@ -284,19 +292,19 @@ void updateBookById(Book *a1, int SIZE) {
 			switch (n) 
 			{
             	case 1: printf("Enter new Book Name: ");
-            			scanf("%s", a1[i].Bname);
+            			scanf("%s", a1[i].bname);
 				break;
             	case 2: printf("Enter new Author Name: ");
-            			scanf("%s", a1[i].AuthorName); 
+            			scanf("%s", a1[i].authorName); 
 				break;
             	case 3: printf("Enter new Price: ");
             			scanf("%d", &a1[i].price);
 				break;
 				case 4: printf("Enter new Category: ");
-            			scanf("%s", a1[i].Category);
+            			scanf("%s", a1[i].category);
 				break;
 				case 5: printf("Enter new Rating: ");
-						scanf("%f", &a1[i].Rating);
+						scanf("%f", &a1[i].rating);
 				break;
             	case 0: printf("Exiting...\n"); 
 				break;
@@ -314,10 +322,10 @@ void updateBookById(Book *a1, int SIZE) {
 }
 
 //sort Book
-void sortBooks(Book *a1, int SIZE) {
+void sortBooks(Book *a1, int size) {
     int choice;
 
-    if (SIZE == 0) {
+    if (size == 0) {
         printf("No books to sort\n");
         return;
     }
@@ -332,13 +340,13 @@ void sortBooks(Book *a1, int SIZE) {
 
     Book temp;
 
-    for (int i = 0; i < SIZE - 1; i++) {
-        for (int j = i + 1; j < SIZE; j++) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = i + 1; j < size; j++) {
             int shouldSwap = 0;
 
             switch (choice) {
                 case 1:
-                    if (a1[i].Bid > a1[j].Bid)
+                    if (a1[i].bid > a1[j].bid)
                         shouldSwap = 1;
                     break;
                 case 2:
@@ -346,11 +354,11 @@ void sortBooks(Book *a1, int SIZE) {
                         shouldSwap = 1;
                     break;
                 case 3:
-                    if (a1[i].Rating > a1[j].Rating)
+                    if (a1[i].rating > a1[j].rating)
                         shouldSwap = 1;
                     break;
                 case 4:
-                    if (strcmp(a1[i].Bname, a1[j].Bname) > 0)
+                    if (strcmp(a1[i].bname, a1[j].bname) > 0)
                         shouldSwap = 1;
                     break;
                 default:
