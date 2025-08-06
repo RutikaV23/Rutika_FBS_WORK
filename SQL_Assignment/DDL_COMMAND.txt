@@ -1,0 +1,105 @@
+1.Login to MySQL and view all databases already present. You should get 
+following result : 
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| clothes            |
+| db_ecollege        |
+| db_global          |
+| may2025batch       |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.06 sec)
+
+mysql> use may2025batch;
+Database changed
+
+2. 
+Login to MySQL and view all databases already present. You should get 
+following result : 
+Write an SQL statement to create a simple table countries including columns 
+country_id,country_name and region_id. After this display the structure of 
+table as below :
+
+mysql> create table countries(country_id int,country_name varchar(30) ,region_id int);
+Query OK, 0 rows affected (0.09 sec)
+
+3. Write an SQL statement to create a table named jobs including columns job_id, job_title, min_salary, max_salary and check whether the max_salary amount exceeding the upper limit 25000. Also set job primary key and entering null values for job_title is not allowed. 
+
+ mysql> CREATE TABLE jobs( 
+job_id INT primary key,
+job_title VARCHAR(30) not null,
+min_salary double,
+max_salary double check(max_salary <25000));
+Query OK, 0 rows affected (0.07 sec)
+
+
+4. Write a SQL statement to create a table named job_histry including columns 
+employee_id, start_date, end_date, job_id and department_id
+
+mysql> create table job_histry(
+    -> employee_id int
+    -> , start_date date,
+    -> end_date date ,
+    -> job_id int ,
+    -> department_id int );
+Query OK, 0 rows affected (0.06 sec)
+
+5. Write an SQL statement to alter a table named countries to make sure that no 
+duplicate data against column country_id will be allowed at the time of 
+insertion. 
+
+mysql> alter table countries
+    -> add primary key(country_id);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+6. Write an SQL statement to create a table named jobs including columns job_id, 
+job_title, min_salary and max_salary, and make sure that, the default value 
+for job_title is blank and min_salary is 8000 and max_salary is NULL will be 
+entered automatically at the time of insertion if no value assigned for the 
+specified columns. 
+
+mysql> create table jobss(
+    -> job_id int,
+    -> job_title varchar(30) default null,
+    -> min_salary double default 8000,
+    -> max_salary double default null);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc jobss;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| job_id     | int(11)     | YES  |     | NULL    |       |
+| job_title  | varchar(30) | YES  |     | NULL    |       |
+| min_salary | double      | YES  |     | 8000    |       |
+| max_salary | double      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+7. create a Department table with following structure 
+> create table Department(
+    -> department_id decimal(4,0) primary key,
+    -> department_name varchar(30) default null,
+    -> manger_id decimal(6,0) primary key,
+    -> location_id decimal(4,0) default null);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'manger_id
+create table Department(
+department_id decimal(4,0) primary key,
+depar' at line 1
+
+
+8. Write an SQL statement to create a table employees including columns 
+employee_id, first_name, last_name, email, phone_number hire_date, job_id, 
+salary, commission, manager_id and department_id and make sure that, the employee_id column does not contain any duplicate value at the time of insertion and the foreign key columns combined by department_id and manager_id columns contain only those unique combination values, which combinations are exists in the departments table. 
+
+
+create table employees(employee_id int primary key,first_name varchar(30), last_name varchar(30), email email, phone_number number,hire_date date, job_id int,
