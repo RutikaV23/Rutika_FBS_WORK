@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Border Control</title>
+<style>
+    body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+    img {
+        width: 250px;
+        height: auto;
+        border: 5px solid black;
+        display: block;
+        margin: 20px auto;
+        border-radius: 10px; /* rounded corners */
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.3); /* shadow effect */
+    }
+    input, select, button {
+        margin: 8px;
+        padding: 2px 10px;
+        font-size: 14px;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    .checkboxes {
+        margin-top: 15px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Image -->
+<img id="myImage" src="https://static.vecteezy.com/system/resources/thumbnails/049/855/347/small_2x/nature-background-high-resolution-wallpaper-for-a-serene-and-stunning-view-photo.jpg" alt="Sample Image">
+
+<!-- Border Width -->
+<input type="number" id="widthChange" placeholder="Border px" min="0">
+
+<!-- Border Color -->
+<input type="color" id="widthColor">
+
+<!-- Border Style -->
+<select id="borderStyle">
+    <option value="solid">Solid</option>
+    <option value="dotted">Dotted</option>
+    <option value="dashed">Dashed</option>
+    <option value="double">Double</option>
+</select>
+
+<!-- Checkboxes -->
+<div class="checkboxes">
+    <label><input type="checkbox" name="chkWidth"> Apply Width</label><br>
+    <label><input type="checkbox" id="chkColor"> Apply Color</label><br>
+    <label><input type="checkbox" id="chkStyle"> Apply Style</label>
+</div>
+
+<!-- Apply All Button -->
+<button onclick="applyAllChanges()">Apply All</button>
+
+<script>
+function applyAllChanges() {
+    let img = document.getElementById("myImage");
+
+    // Apply width
+    if (document.getElementsByName("chkWidth").checked) {
+        width = document.getElementByName("widthChange").value;
+        if (width !== "" && !isNaN(width)) {
+            img.style.borderWidth = width + "px";
+        }
+    }
+
+    // Apply color
+    if (document.getElementById("chkColor").checked) {
+        color = document.getElementById("widthColor").value;
+        img.style.borderColor = color;
+    }
+
+    // Apply style
+    if (document.getElementById("chkStyle").checked) {
+        style = document.getElementById("borderStyle").value;
+        img.style.borderStyle = style;
+    }
+}
+</script>
+
+</body>
+</html>
