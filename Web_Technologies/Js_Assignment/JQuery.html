@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.js"></script>
+</head>
+<body>
+    <p id="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti corrupti, tempora velit voluptatum aliquid architecto non molestias ducimus eaque voluptatem consequuntur asperiores voluptate repellat libero saepe, alias blanditiis doloribus porro, voluptates unde eius. Illo, dolorum incidunt vero laudantium non cumque molestias quisquam porro modi nihil?</p>
+    
+    <button id="sbtn">show</button>
+    <button id="hbtn">hide</button><br><br>
+    <button id="showhidebtn">show/hide</button>
+</body>
+<script>
+    
+    
+    document.addEventListener('DOMContentLoaded',function(){
+     
+          $("#showhidebtn").click(function()
+    {
+        $("#para").fadeToggle(1000)
+    })
+
+
+        document.getElementById("sbtn").addEventListener('click',function()
+    {
+        $("#para").show()
+    })
+
+
+    document.getElementById("hbtn").addEventListener('click',function()
+    {
+        $("#para").hide()
+    })
+
+    })
+    </script>
+</html>

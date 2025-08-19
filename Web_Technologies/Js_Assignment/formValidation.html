@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script>
+      function isvalid(password){
+         for(i=0;i<password.length;i++){
+            if(password.charAt(i)>='A' && password.charAt(i)<='Z')
+            return true
+         }
+         return false
+      }
+
+      
+      function validateuser(){
+        username=document.getElementById("uname").value
+       if(username.trim().length==0)
+       {
+       document.getElementById("unameroor").innerHTML="please enter username"
+        return
+       }
+        else{
+       document.getElementById("unameroor").innerHTML=""
+       }
+      }
+      
+
+      function validatpass(){
+         password=document.getElementById("pass").value
+     if(password.length==0)
+     {
+        document.getElementById("passeroor").innerHTML=" enter password"
+        return false
+      }
+      if(password.length<10){
+        document.getElementById("passeroor").innerHTML="please enter 10 max character"
+        return false
+     }else if(!isvalid(password)){
+        document.getElementById("passeroor").innerHTML="please enter ateleast one uppercase character"
+        return
+     }
+     else{
+       document.getElementById("passeroor").innerHTML=""
+     }
+      }
+
+
+     function submitform(){
+
+      /* username=document.getElementById("uname").value 
+     if(username.trim().length==0)
+     {
+       document.getElementById("unameroor").innerHTML="please enter username"
+        return
+     }
+     else{
+      document.getElementById("unameroor").innerHTML=""
+      } */
+ 
+      if(validateuser()==false){
+         return
+      }
+      if(validatpass()==false){
+         return
+      }
+      /*
+     password=document.getElementById("pass").value
+     if(password.length==0)
+     {
+        alert("please enter password")
+        return
+     }else if(password.length<10){
+        alert("please enter 10 max character")
+        return
+     }else if(!isvalid(password)){
+        alert("please enter ateleast one uppercase character")
+        return
+     }*/
+
+
+         mobilenumbr=document.getElementById("mobno").value
+         if(mobilenumbr.length==0){
+             alert("plaese enter number")
+            return
+         }
+         else if(mobilenumbr.length < 10){
+            alert("Mobile number is too short")
+            return
+        } else if(mobilenumbr.length > 10){
+            alert("Mobile number is too long")
+            return
+        }
+
+      subjects=document.getElementsByClassName("subjects")
+         count=0
+         for(i=0;i<subjects.length;i++){
+            if(subjects[i].checked)
+            count++
+         }
+         if(count<2){
+            alert("atleast 2 checkbox fill")
+            return
+         }
+   
+
+    document.getElementById("regform").submit()
+     }
+ 
+    </script>
+ 
+</head>
+<body>
+    <form  action="/dummy" method="get" id="regform">
+     username<input type="text" name="uname" id="uname" placeholder="Enter username" onblur="validateuser()">
+     <span id="unameroor"></span>
+     <br><br>
+      password<input type="password" name="pass" id="pass" placeholder="Enter password" onblur="validatpass()">
+       <span id="passeroor"></span>
+      <br><br>
+      mob no<input type="number" name="mobo" id="mobno" placeholder="eg:2341568791">
+      <span id="moberror"></span>
+      <br><br>
+
+
+      gender<input type="radio" name="gender" value="m">male
+      <input type="radio" name="gender" value="f">female
+      <input type="radio" name="gender" value="o">Other
+      <br><br>
+
+
+      subjects<input type="checkbox"  name="math" class="subjects">math
+      <input type="checkbox"  name="phy" class="subjects">physics
+      <input type="checkbox"  name="bio" class="subjects">bio
+      <input type="checkbox"  name="che" class="subjects">chemistry
+      <br><br>
+
+      <input type="button" value="submit" onclick="submitform()">
+    </form>
+</body>
+</html>
