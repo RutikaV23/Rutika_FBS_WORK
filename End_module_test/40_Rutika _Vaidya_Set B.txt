@@ -5,7 +5,7 @@ Set B
 
 select c_name 
 from Customers
-order by name asc;
+order by c_name asc;
 
 2. Fetch the top 10 most expensive products from the `Products` table.
 
@@ -146,3 +146,12 @@ on c.customer_id = a.customer_id
 group by customer_id
 having count(order_id) > 2;
 
+
+
+17. Question:
+You have two tables:
+• Products with columns: product_id, product_name.
+• Sales with columns: sale_id, product_id, sale_date, amount.
+• O/P- product_id | product_name | sales_count
+Write an SQL query to find the number of sales made for each product. Only include products
+with more than 50 sales.
