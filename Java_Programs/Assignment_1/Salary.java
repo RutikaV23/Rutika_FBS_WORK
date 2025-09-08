@@ -1,4 +1,3 @@
-package Assignment_1;
 
 public class Salary {
 
@@ -22,3 +21,4 @@ public class Salary {
         System.out.printf("The total salary is : %.2f", total);
     }
 }
+
