@@ -1,4 +1,3 @@
-package Assignment_1;
 
 public class Palindrome {
 
@@ -19,3 +18,4 @@ public class Palindrome {
 	}
 
 }
+
