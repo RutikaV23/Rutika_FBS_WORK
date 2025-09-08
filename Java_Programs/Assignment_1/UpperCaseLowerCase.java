@@ -1,4 +1,3 @@
-package Assignment_1;
 
 public class UpperCaseLowerCase {
 
@@ -16,3 +15,4 @@ public class UpperCaseLowerCase {
 	}
 
 }
+
