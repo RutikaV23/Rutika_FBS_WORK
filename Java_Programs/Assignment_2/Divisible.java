@@ -1,4 +1,3 @@
-package Assignment_2;
 
 public class Divisible {
 
@@ -22,3 +21,4 @@ public class Divisible {
 
      }
 	}
+
