@@ -1,4 +1,3 @@
-package Assignment_1;
 
 public class Average {
 
@@ -14,3 +13,4 @@ public class Average {
 	}
 
 }
+
