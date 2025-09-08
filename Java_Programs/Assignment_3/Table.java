@@ -1,4 +1,3 @@
-package Assignment_3;
 
 public class Table {
 
@@ -14,3 +13,4 @@ public class Table {
 	}
 
 }
+
