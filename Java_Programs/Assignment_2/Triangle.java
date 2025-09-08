@@ -1,4 +1,3 @@
-package Assignment_2;
 
 public class Triangle {
 
@@ -19,3 +18,4 @@ public class Triangle {
 	}
 
 }
+
