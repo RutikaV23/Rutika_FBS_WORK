@@ -12,5 +12,6 @@ void main(){
 	 if(prime == 0)
 	    printf("Prime number");
 	  else
-	    printf("Prime not number");
+	    printf("Not Prime number");
+
 }
