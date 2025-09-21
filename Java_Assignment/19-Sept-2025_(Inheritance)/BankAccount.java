@@ -9,7 +9,10 @@ class Account {
         this.balance = balance;
     }
 
-    int getAccNo() { return accNo; }
+    int getAccNo() 
+     { 
+          return accNo; 
+     }
      void setAccNo(int accNo) 
      { 
           this.accNo = accNo; 
@@ -92,5 +95,6 @@ class CurrentAccount extends Account {
         ca.displayCurrent();
     }
 }
+
 
 
