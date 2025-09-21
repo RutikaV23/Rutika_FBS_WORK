@@ -10,7 +10,10 @@ class Account {
     }
 
     int getAccNo() { return accNo; }
-     void setAccNo(int accNo) { this.accNo = accNo; }
+     void setAccNo(int accNo) 
+     { 
+          this.accNo = accNo; 
+     }
 
      String getHolderName() 
     { 
@@ -89,4 +92,5 @@ class CurrentAccount extends Account {
         ca.displayCurrent();
     }
 }
+
 
