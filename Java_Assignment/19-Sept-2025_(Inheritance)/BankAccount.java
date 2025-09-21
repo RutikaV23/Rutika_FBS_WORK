@@ -1,24 +1,37 @@
 class Account {
-    private int accNo;
-    private String holderName;
-    private double balance;
+     int accNo;
+     String holderName;
+     double balance;
 
-    public Account(int accNo, String holderName, double balance) {
+     Account(int accNo, String holderName, double balance) {
         this.accNo = accNo;
         this.holderName = holderName;
         this.balance = balance;
     }
 
-    public int getAccNo() { return accNo; }
-    public void setAccNo(int accNo) { this.accNo = accNo; }
+    int getAccNo() { return accNo; }
+     void setAccNo(int accNo) { this.accNo = accNo; }
 
-    public String getHolderName() { return holderName; }
-    public void setHolderName(String holderName) { this.holderName = holderName; }
+     String getHolderName() 
+    { 
+        return holderName;
+    }
+     void setHolderName(String holderName) 
+    { 
+        this.holderName = holderName; 
+    }
 
-    public double getBalance() { return balance; }
-    public void setBalance(double balance) { this.balance = balance; }
+     double getBalance() 
+    { 
+        return balance; 
+    }
+     void setBalance(double balance) 
+    { 
+        this.balance = balance; 
+    }
 
-    public void displayAccount() {
+     void displayAccount() 
+    {
         System.out.println("Account No: " + accNo);
         System.out.println("Holder Name: " + holderName);
         System.out.println("Balance: " + balance);
@@ -26,40 +39,47 @@ class Account {
 }
 
 class SavingsAccount extends Account {
-    private double interestRate;
+     double interestRate;
 
-    public SavingsAccount(int accNo, String holderName, double balance, double interestRate) {
+     SavingsAccount(int accNo, String holderName, double balance, double interestRate) {
         super(accNo, holderName, balance);
         this.interestRate = interestRate;
     }
 
-    public double getInterestRate() { return interestRate; }
-    public void setInterestRate(double interestRate) { this.interestRate = interestRate; }
+    double getInterestRate() { return interestRate; }
+     void setInterestRate(double interestRate) { this.interestRate = interestRate; }
 
-    public void displaySavings() {
+     void displaySavings() {
         displayAccount();
         System.out.println("Interest Rate: " + interestRate + "%");
     }
 }
 
 class CurrentAccount extends Account {
-    private double overdraftLimit;
+     double overdraftLimit;
 
-    public CurrentAccount(int accNo, String holderName, double balance, double overdraftLimit) {
+     CurrentAccount(int accNo, String holderName, double balance, double overdraftLimit) {
         super(accNo, holderName, balance);
         this.overdraftLimit = overdraftLimit;
     }
 
-    public double getOverdraftLimit() { return overdraftLimit; }
-    public void setOverdraftLimit(double overdraftLimit) { this.overdraftLimit = overdraftLimit; }
+     double getOverdraftLimit() 
+    { 
+        return overdraftLimit; 
+    }
+     void setOverdraftLimit(double overdraftLimit) 
+    { 
+        this.overdraftLimit = overdraftLimit; 
+    }
 
-    public void displayCurrent() {
+     void displayCurrent() 
+    {
         displayAccount();
         System.out.println("Overdraft Limit: " + overdraftLimit);
     }
 }
 
-public class BankAccount {
+ class BankAccount {
     public static void main(String[] args) {
         SavingsAccount sa = new SavingsAccount(101, "Ritika", 50000, 4.5);
         CurrentAccount ca = new CurrentAccount(102, "Amit", 100000, 25000);
@@ -69,3 +89,4 @@ public class BankAccount {
         ca.displayCurrent();
     }
 }
+
